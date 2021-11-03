@@ -1,0 +1,8 @@
+{
+  "name": "RecursosMaterialesQR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "83ca3b00"
+}
