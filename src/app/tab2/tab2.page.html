@@ -62,6 +62,23 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-item>
+      <ion-label className="ion-text-wrap">Info QR</ion-label>
+    </ion-item>
+  </ion-card>
+
+<form [formGroup]="formData">
+ <ion-card>
+    <ion-item>
+      <ion-input slot="start" formControlName="barcodeData">{{scannedData}}</ion-input>    
+    </ion-item>
+  </ion-card>
+
+
+</form>
+ 
+
 <!--
   <ion-card>
     <ion-card-content>

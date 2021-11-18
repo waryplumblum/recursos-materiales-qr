@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-tab2',
@@ -12,12 +13,38 @@ export class Tab2Page {
 
   //VARIABLES DEL QR
 
+  scannedData: any;
+  formData: FormGroup;
 
-  constructor(private barcodeScanner: BarcodeScanner) {}
+  constructor(private barcodeScanner: BarcodeScanner, private fb: FormBuilder) {
+    this.initializeForm();
+  }
+
+  initializeForm(): void{
+    this.formData= this.fb.group({
+      barcodeData: [this.scannedData]
+    });
+  }
 
   scanBarcode() {
-    this.barcodeScanner.scan().then(barcodeData => {
+    const options: BarcodeScannerOptions = {
+      preferFrontCamera : false,
+      showFlipCameraButton : true,
+      showTorchButton: true,
+      torchOn: false,
+      saveHistory: true,
+      prompt: 'Coloque un codigo QR o de Barras para escanear',
+      resultDisplayDuration: 2000,
+      formats: 'EAN_13,EAN_8,QR_CODE,PDF_417,CODABAR',
+    };
+
+
+
+
+    this.barcodeScanner.scan(options).then(barcodeData => {
       console.log('Barcode data', barcodeData);
+      this.scannedData = barcodeData.text.toString();
+      this.initializeForm();
      // this.matchProduct(barcodeData.text);
      }).catch(err => {
          console.log('Error', err);
