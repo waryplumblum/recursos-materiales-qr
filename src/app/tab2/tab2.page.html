@@ -1,17 +1,96 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      QR Servicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card>
+    <ion-list>
+      
+      <ion-list-header>
+        <ion-label>
+         Tipo de gasto
+        </ion-label>
+      </ion-list-header>
+    
+      <ion-item>
+        <ion-label>Gasto</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="GD">Gasto Directo</ion-select-option>
+          <ion-select-option value="FP">Fort. al Posgrado</ion-select-option>
+          <ion-select-option value="IP">Ingresos Propios</ion-select-option>
+          <ion-select-option value="I">Investigadores</ion-select-option>
+          <ion-select-option value="P">Proyectos</ion-select-option>
+          <ion-select-option value="EMPTY"></ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+
+  <ion-card >
+    
+    <ion-card-content>
+      <!--<h4>PLU: {{plu}}</h4>-->
+      <!--<h4>Descrition: {{description}}</h4>-->
+      <p>
+        <ion-button (click)="clearForm()">
+          <ion-icon slot="start" name="refresh"></ion-icon>
+          Clear
+        </ion-button>
+        <ion-button (click)="scanBarcode()">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Scan
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <p>
+        <ion-button (click)="scanBarcode()">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Check
+        </ion-button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-label className="ion-text-wrap">Info QR</ion-label>
+    </ion-item>
+  </ion-card>
+
+<form [formGroup]="formData">
+ <ion-card>
+    <ion-item>
+      <ion-input slot="start" formControlName="barcodeData">{{scannedData}}</ion-input>    
+    </ion-item>
+  </ion-card>
+
+
+</form>
+ 
+
+<!--
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Manually Input</ion-label>
+        <ion-input type="number" [(ngModel)]="productnumber"></ion-input>
+      </ion-item>  
+      <ion-button (click)="checkManually()">
+        <ion-icon slot="start" name="send"></ion-icon>
+        Scan
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+-->
 </ion-content>
